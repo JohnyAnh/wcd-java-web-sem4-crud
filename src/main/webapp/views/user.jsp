@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: hoanganhvu
+  Date: 19/10/2023
+  Time: 10:56
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -12,7 +19,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CRUD Student</title>
+  <title>CRUD User</title>
   <link
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
           rel="stylesheet"
@@ -63,7 +70,7 @@
   </div>
 </nav>
 <%--End Nav--%>
-<h1>Student Manager</h1>
+<h1>User Manager</h1>
 <div class="alert">
   <c:if test="${not empty message}">
     <div class="alert alert-success">${message}</div>
@@ -76,62 +83,73 @@
 <div class="container">
   <div class="row">
     <div class="col-12 d-flex justify-content-center align-items-center">
-      <form class="col-6" action="/student/index" method="post">
+      <form class="col-6" action="/user/index" method="post">
 
         <div class="input-group mb-3 input-group-sm">
-          <span class="input-group-text" id="input-group-sizing-default">ID</span>
-          <input name="id" value="${student.id}" type="text" class="form-control" >
+          <span class="input-group-text" id="input-group-sizing-default">Username</span>
+          <input name="id" value="${user.id}" type="text" class="form-control" >
+        </div>
+
+        <div class="input-group mb-3 input-group-sm">
+          <span class="input-group-text" >Password</span>
+          <input name="password" value="${user.password}" type="password" class="form-control">
+        </div>
+
+        <div class="input-group mb-3 input-group-sm">
+          <span class="input-group-text" >Fullname</span>
+          <input name="fullname" value="${user.fullname}" type="text" class="form-control">
+        </div>
+
+        <div class="input-group mb-3 input-group-sm">
+          <span class="input-group-text">Email</span>
+          <input name="email" value="${user.email}" type="email" class="form-control">
+        </div>
+        <div class="div_role">
+          <label>Role:</label>
+          <input type="radio" id="admin" name="admin" ${user.admin?'checked':''}
+          aria-label="Sizing example input">
+          <label for="admin">Admin</label>
+          <input type="radio" id="user" name="user" ${user.admin?'checked':''}
+                 aria-label="Sizing example input">
+          <label for="user">User</label>
         </div>
 
 
-        <div class="input-group mb-3 input-group-sm">
-          <span class="input-group-text" >Name</span>
-          <input name="name" value="${student.name}" type="text" class="form-control">
-        </div>
 
-
-        <div class="input-group mb-3 input-group-sm">
-          <span class="input-group-text">Birth</span>
-          <input name="birth" value="${student.birth}" type="text" class="form-control">
-        </div>
-
-
-        <div class="input-group mb-3 input-group-sm">
-          <span class="input-group-text">Phone</span>
-          <input name="phone" value="${student.phone}" type="text" class="form-control">
-        </div>
         <div >
-          <button formaction="/student/create"  class="btn btn-success">Create</button>
-          <button formaction="/student/update"  class="btn btn-warning">Update</button>
-          <button formaction="/student/delete"  class="btn btn-danger">Delete</button>
-          <button formaction="/student/reset"  class="btn btn-primary">Reset</button>
+          <button formaction="/user/create"  class="btn btn-success">Create</button>
+          <button formaction="/user/update"  class="btn btn-warning">Update</button>
+          <button formaction="/user/delete"  class="btn btn-danger">Delete</button>
+          <button formaction="/user/reset"  class="btn btn-primary">Reset</button>
         </div>
 
       </form>
     </div>
 
     <div class="container mt-3">
-      <h2>Table Students</h2>
+      <h2>Table User</h2>
       <table class="table table-striped">
         <thead>
         <tr>
-          <th>Student code</th>
-          <th>Name</th>
-          <th>Birth</th>
-          <th>Phone</th>
-          <th>Action</th>
+          <th scope="col">ID</th>
+          <th scope="col">Password</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Role</th>
+          <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="student" items="${students}">
+        <c:forEach var="user" items="${users}">
           <tr>
-            <td>${student.id}</td>
-            <td>${student.name}</td>
-            <td>${student.birth}</td>
-            <td>${student.phone}</td>
+            <td>${user.id}</td>
+            <td>${user.password}</td>
+            <td>${user.fullname}</td>
+            <td>${user.email}</td>
+            <td>${user.admin ?'Admin':'User'}</td>
             <td>
-              <a href="/student/edit/?id=${student.id}">Edit</a>
-              <a class="delete" href="/student/delete/?id=${student.id}">Delete</a>
+              <a href="/user/edit/?id=${user.id}">Edit</a>
+              <a class="delete" href="/user/delete/?id=${user.id}">Delete</a>
             </td>
           </tr>
         </c:forEach>
@@ -146,3 +164,4 @@
 
 </body>
 </html>
+

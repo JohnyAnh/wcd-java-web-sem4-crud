@@ -27,6 +27,9 @@
         <li class="nav-item">
           <a class="nav-link" href="/student/index">List Student</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/index">List User</a>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Customer 2
